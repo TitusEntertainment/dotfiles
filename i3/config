@@ -45,19 +45,10 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# toggle polybar
-
-bindsym $mod+p exec polybar-msg cmd toggle
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -102,7 +93,7 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus 
                                                        
-between tiling / floating windows
+#between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
@@ -207,7 +198,7 @@ bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opaci
 
 hide_edge_borders both
 bar {   
-        output DP-4
+        output DP-2
   	status_command i3blocks -c ~/.config/i3/i3blocks.conf
         position top
         workspace_buttons yes
@@ -218,7 +209,7 @@ bar {
 		#                  border             background         text
 		focused_workspace  $bg-color          $bg-color          $text-color
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+		#urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
 }
 
@@ -229,7 +220,7 @@ bar {
 client.focused          $bg-color           $bg-color          $text-color          #00ff00
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+#client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 
 #--- SOME EXTRA BINDINGS ----#
@@ -244,7 +235,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 set $browser firefox-developer-edition
 set $music spotify
-set $term konsole
+set $term urxvt
 set $thick 4
 border_radius 4
 for_window [class=.*] border pixel 0
@@ -252,11 +243,15 @@ for_window [class=.*] border pixel 0
 #-- EXTRA EXEC ----#
 
 exec_always compton -f
-exec devilspie
+exec_always devilspie
 
-exec_always xrandr --output DVI-D-0 --off --output HDMI-0 --mode 1680x1050 --pos 0x77 --rotate normal --output DP-0 --off --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 4240x180 --rotate normal --output DP-3 --off --output DP-4 --mode 2560x1440 --pos 1680x0 --rotate normal --output DP-5 --off
+#exec_always xrandr --output DVI-D-0 --off --output HDMI-0 #--mode 1680x1050 --pos 0x77 --rotate normal --output DP-0 #--off --output DP-1 --off --output DP-2 --mode 1920x1080 #--pos 4240x180 --rotate normal --output DP-3 --off #--output DP-4 --mode 2560x1440 --pos 1680x0 --rotate #normal --output DP-5 --off
 
+exec_always ~/.screenlayout/screen.sh
+exec_always ~/.bashrc
 
-exec_always feh --bg-scale /home/titus/Pictures/wallpapers/solar.jpg
-exec wal -i ~/Pictures/wallpapers/solar.jpg
-#exec_always dunst
+exec_always feh --bg-scale /home/titus/pictures/wallpapers/night_japan.jpg
+exec wal -i ~/pictures/wallpapers/night_japan.jpg
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+
+exec --no-startup-id clipit
