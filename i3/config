@@ -113,7 +113,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -125,7 +124,6 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -137,7 +135,6 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -161,8 +158,8 @@ mode "resize" {
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
@@ -248,10 +245,9 @@ exec_always devilspie
 #exec_always xrandr --output DVI-D-0 --off --output HDMI-0 #--mode 1680x1050 --pos 0x77 --rotate normal --output DP-0 #--off --output DP-1 --off --output DP-2 --mode 1920x1080 #--pos 4240x180 --rotate normal --output DP-3 --off #--output DP-4 --mode 2560x1440 --pos 1680x0 --rotate #normal --output DP-5 --off
 
 exec_always ~/.screenlayout/screen.sh
-exec_always ~/.bashrc
+exec ~/.bashrc
 
-exec_always feh --bg-scale /home/titus/pictures/wallpapers/night_japan.jpg
-exec wal -i ~/pictures/wallpapers/night_japan.jpg
+exec_always wal -i ~/pictures/wallpapers/night_japan.jpg
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 
 exec --no-startup-id clipit
